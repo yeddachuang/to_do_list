@@ -1,0 +1,12 @@
+<%= form_for @tasks, :url => tasks_path do |f| %>
+  <%= f.label :name, "Name" %>
+  <%= f.text_field, :name %>
+
+  <%= f.lable :due_date, "Due Date" %>
+  <%= f.text_field :due_date %>
+
+  <%= f.lable :note, "Note" %>
+  <%= f.text_area :note %>
+
+  <%= f.submit "Create"%>
+<% end %>
