@@ -31,7 +31,9 @@ class TasksController < ApplicationController
 
   def destroy
     @task = Task.find(params[:id])
-    @task.destroy
+    if @task.due_date > Date.today
+      @task.destroy
+    end
 
     redirect_to tasks_url
   end
