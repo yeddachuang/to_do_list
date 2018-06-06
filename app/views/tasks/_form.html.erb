@@ -1,0 +1,37 @@
+<div class="alert alert-primary" role="alert">
+  <% if @task.errors.present? %>
+    <ul>
+      <% @task.errors.each do |error, message| %>
+        <li> <%= "#{error.capitalize}  #{message}" %></li>
+      <% end %>
+    </ul>
+  <% end%>
+</div>
+
+<div class="form container">
+  <%= form_for @task do |f| %>
+    <div class="form-group">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <%= f.label :due_date, "Due Date"%>
+      </div>
+      <div class="form-control col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <%= f.text_field :due_date %>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <%= f.label :name, "Name" %>
+      </div>
+      <div class="form-control col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <%= f.text_field :name %>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <%= f.label :note, "Note" %>
+      </div>
+      <div class="form-control col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <%= f.text_area :note %>
+      </div>
+    </div>
+    <div class="btn btn-primary col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= f.submit%>
+    </div>
+  <% end %>
+</div>

@@ -1,8 +1,9 @@
 class TasksController < ApplicationController
-  before_action :set_photo, :only => [:show, :edit, :update, :destroy, :finish]
+  before_action :set_task, :only => [:show, :edit, :update, :destroy, :done, :undo]
 
   def index
-    @tasks = Task.all
+    @tasks_undo = Task.where(status: nil).order(:due_date)
+    @tasks_done = Task.where(status: true).order(:due_date)
   end
 
   def new
@@ -11,9 +12,11 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
-    @task.save
-
-    redirect_to tasks_url
+    if @task.save
+      redirect_to tasks_url
+    else
+      render  :action => :new
+    end
   end
 
   def update
@@ -31,8 +34,20 @@ class TasksController < ApplicationController
     redirect_to tasks_url
   end
 
-  def finish
-    @task.status = true
+  def done
+    if @task.due_date > Date.today
+      @task.update_column(:status, true)
+    end
+
+    redirect_to tasks_url
+  end
+
+  def undo
+    if @task.due_date > Date.today
+      @task.update_column(:status, nil)
+    end
+
+    redirect_to tasks_url
   end
 
   private

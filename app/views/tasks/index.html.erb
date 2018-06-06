@@ -1,13 +1,43 @@
-<ul>
-  <% @tasks.each do |task| %>
-    <li>
-      <%= task.name %>
-      <%= link_to 'Show', task_path(task) %>
-      <%= link_to 'Edit', edit_task_path(task) %>
-      <%= link_to 'Destroy', task_path(task), method: :delete, data:{ confirm: "Are you sure?" } %>
-      <%= link_to 'Done', task_path(task), method: :complete, data:{ confirm: "Good job!" } %>
-    </li>
+<!----------------------------------------------------------------------------->
+<div class="text-center col-xs-12 col-sm-8 col-md-6 col-lg-4 align-baseline">
+  <h1>Today is <%= Date.today.to_s(:long) %></h1>
+</div>
+<div class="text-center col-xs-12 col-sm-4 col-md-4 col-lg-4 align-baseline">
+  <%= link_to 'New Task', new_task_path, class: "btn btn-primary" %>
+</div>
+<div class="col-xs-0 col-sm-0 col-md-2 col-lg-4"></div>
+<div class="clearfix">...</div>
+<!----------------------------------------------------------------------------->
+<div class="text-center col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  <h1>Unfinished Tasks</h1>
+</div>
+<!----------------------------------------------------------------------------->
+<table class="table table-striped table-condensed">
+  <% @tasks_undo.each do |task| %>
+    <tr>
+      <td class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><%= task.due_date %></td>
+      <td class="col-xs-6 col-sm-6 col-md-6 col-lg-6"><%= task.name %></td>
+      <td class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><%= link_to 'More', task_path(task), class: "btn btn-primary" %></td>
+      <td class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><%= link_to 'Edit', edit_task_path(task), class: "btn btn-primary" %></td>
+      <td class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><%= button_to 'Done', done_task_path(task), class: "btn btn-primary" %></td>
+      <td class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><%= button_to 'Delete', task_path(task), method: :delete, data:{ confirm: "Are you sure?" }, class: "btn btn-primary" %></td>
+    </tr>
   <% end %>
-</ul>
-
-<%= link_to 'New Task', new_task_path %>
+</table>
+<!----------------------------------------------------------------------------->
+<div class="text-center col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  <h1>Finished Tasks</h1>
+</div>
+<!----------------------------------------------------------------------------->
+<table class="table table-striped table-condensed">
+  <% @tasks_done.each do |task| %>
+    <tr>
+      <td class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><%= task.due_date %></td>
+      <td class="col-xs-6 col-sm-6 col-md-6 col-lg-6"><%= task.name %></td>
+      <td class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><%= link_to 'More', task_path(task), class: "btn btn-primary" %></td>
+      <td class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><%= link_to 'Edit', edit_task_path(task), class: "btn btn-primary" %></td>
+      <td class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><%= button_to 'Undo', undo_task_path(task), class: "btn btn-primary" %></td>
+      <td class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><%= button_to 'Delete', task_path(task), method: :delete, data:{ confirm: "Are you sure?" }, class: "btn btn-primary" %></td>
+    </tr>
+  <% end %>
+</table>

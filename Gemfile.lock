@@ -1,3 +1,13 @@
+GIT
+  remote: https://github.com/durnin/Viewpoint.git
+  revision: 979a745b34c1c5a44598872d5edee7b55fe72691
+  specs:
+    viewpoint (1.0.0)
+      httpclient
+      logging
+      nokogiri
+      rubyntlm
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -83,6 +93,7 @@ GEM
     ffi (1.9.23)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    httpclient (2.8.3)
     i18n (1.0.1)
       concurrent-ruby (~> 1.0)
     io-like (0.3.0)
@@ -97,6 +108,10 @@ GEM
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
       ruby_dep (~> 1.2)
+    little-plugger (1.1.4)
+    logging (2.2.2)
+      little-plugger (~> 1.1)
+      multi_json (~> 1.10)
     loofah (2.2.2)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -148,6 +163,7 @@ GEM
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
     ruby_dep (1.5.0)
+    rubyntlm (0.6.2)
     rubyzip (1.2.1)
     sass (3.5.6)
       sass-listen (~> 4.0.0)
@@ -220,6 +236,7 @@ DEPENDENCIES
   turbolinks (~> 5)
   tzinfo-data
   uglifier (>= 1.3.0)
+  viewpoint!
   web-console (>= 3.3.0)
 
 RUBY VERSION
